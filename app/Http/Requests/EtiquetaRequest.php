@@ -22,7 +22,7 @@ class EtiquetaRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'file' => 'required|file|max:20000|mimes:csv'
+            'file' => 'required',
         ];
         return $rules;
     }
@@ -30,9 +30,6 @@ class EtiquetaRequest extends FormRequest
     public function messages(){
         return[
             'file.required' => 'O arquivo é obrigatório',
-            'file.file' => 'Insira um arquivo',
-            'file.max' => 'O arquivo enviado é muito pesado',
-            'file.mimes' => 'Envie um arquivo CSV.'
         ];
     }
 

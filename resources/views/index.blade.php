@@ -37,6 +37,27 @@
                             <label>Centralizado</label>
                         </div>
                     </div>
+                    <hr />
+                    
+                    <div class="row">
+                        <div class="col">
+                            <label style="margin-top:10px; margin-bottom:-20px;">Margem esquerda</label>
+                            <input type="number" name="mesq" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label style="margin-top:10px; margin-bottom:-20px;">Margem direita</label>
+                            <input type="number" name="mdir" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label style="margin-top:10px; margin-bottom:-20px;">Margem superior</label>
+                            <input type="number" name="msup" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label style="margin-top:10px; margin-bottom:-20px;">Margem inferior</label>
+                            <input type="number" name="minf" class="form-control">
+                        </div>
+                    </div>
+
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
