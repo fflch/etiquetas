@@ -23,7 +23,7 @@
                             <label>Escolha o tipo de etiqueta</label>
                             <select class="form-control" name="etiqueta" style="width:50%;">
                                 @foreach($etiquetas::etiquetaOptions() as $etiqueta)
-                                <option value="{{$etiqueta}}">{{$etiqueta}}</option>
+                                <option value="{{$etiqueta}}" {{old('etiqueta') == $etiqueta ? 'selected' : ''}} >{{$etiqueta}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -34,30 +34,38 @@
                             <input type="radio" name="alignment" value="right">
                             <label>À direita</label><br>
                             <input type="radio" name="alignment" value="center">
-                            <label>Centralizado</label>
+                            <label>Centralizado</label><br />
+                            <hr style="margin-top:2px; margin-bottom:6px;" />
+                            
+                            <b>O CSV possui cabeçalho?</b><br />
+                            <input type="radio" name="cabecalho" value="1" checked> Sim 
+                            <input type="radio" name="cabecalho" value="0"> Não
                         </div>
                     </div>
                     <hr />
-                    
                     <div class="row">
                         <div class="col">
                             <label style="margin-top:10px; margin-bottom:-20px;">Margem esquerda</label>
-                            <input type="number" name="mesq" class="form-control">
+                            <input value="{{old('mesq')}}" type="number" name="mesq" class="form-control">
                         </div>
                         <div class="col">
                             <label style="margin-top:10px; margin-bottom:-20px;">Margem direita</label>
-                            <input type="number" name="mdir" class="form-control">
+                            <input value="{{old('mdir')}}" type="number" name="mdir" class="form-control">
                         </div>
                         <div class="col">
                             <label style="margin-top:10px; margin-bottom:-20px;">Margem superior</label>
-                            <input type="number" name="msup" class="form-control">
+                            <input value="{{old('msup')}}" type="number" name="msup" class="form-control">
                         </div>
                         <div class="col">
                             <label style="margin-top:10px; margin-bottom:-20px;">Margem inferior</label>
-                            <input type="number" name="minf" class="form-control">
+                            <input value="{{old('minf')}}" type="number" name="minf" class="form-control">
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col">
+                            <small class="text-muted">*Não é necessário preencher todos os campos.</small>
+                        </div>
+                    </div>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -71,7 +79,7 @@
                             </div>
                             <div class="col-4">
                             <a href="/download" class="btn btn-outline-primary">
-                                Download do modelo CSV <i class="fa fa-download"></i>
+                                Baixar modelo do CSV <i class="fa fa-download"></i>
                             </a>
                             </div>
                         </div>
@@ -84,12 +92,12 @@
 </div>
 <style>
     @media(max-width: 1199px){
-        .col-2{
+        .col{
             padding-right:0px !important;
         }
     }
     @media(max-width:991px){
-        .col-2{
+        .col{
             max-width:102% !important;
         }
     }

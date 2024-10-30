@@ -19,43 +19,28 @@ class EtiquetaController extends Controller
     
     public function geraEtiqueta(EtiquetaRequest $request){
         $this->authorize('is_user');
-
-        $csvData = array_map('str_getcsv', file($_FILES["file"]["tmp_name"]));
-        $cabecalho = array_shift($csvData);
-        $nome = array_search("Nome", $cabecalho); //pula a primeira linha do csv
-        $mime = mime_content_type($_FILES['file']['tmp_name']);
-
-        if($mime == "text/csv" || $mime == "text/plain" && $csvData){
-            $pimaco = new Pimaco($_POST['etiqueta']);
-            
-            $alinhamento = $_POST['alignment'];
-            $mesq = $_POST['mesq'];
-            $mdir = $_POST['mdir'];
-            $msup = $_POST['msup'];
-            $minf = $_POST['minf'];
-
+        $csvData = array_map('str_getcsv', file($request->file('file')->getPathName()));
+        if($request->cabecalho){
+            array_shift($csvData);
+        }
+            $pimaco = new Pimaco($request->etiqueta);
             foreach($csvData as $i){
                 $tag = new Tag();
                 $tag->p(view('pdfs.etiquetas',[
                 'conteudo' => $i,
-                'alinhamento' => $alinhamento, 
-                'mesq' => $mesq,
-                'mdir' => $mdir,
-                'msup' => $msup,
-                'minf' => $minf
+                'alinhamento' => $request->alignment, 
+                'mesq' => $request->mesq,
+                'mdir' => $request->mdir,
+                'msup' => $request->msup,
+                'minf' => $request->minf
             ]));
                 $pimaco->addTag($tag);
             }
             $pimaco->output();
-        }else{
-            request()->session()->flash('alert-danger',"Insira um arquivo CSV válido.");
-            return redirect('/');
-        }
     }
 
     public function download(){
         $arquivo = public_path('modelo.csv');
         return response()->download($arquivo);
-        return redirect('/');
     }
 } 
