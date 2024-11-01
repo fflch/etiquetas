@@ -1,7 +1,5 @@
-<table style='font-size:70%; width:100%; margin-top:14px; margin-left:12px; ;padding:1px; border: 0px solid #000'>
-    <tr>
-        <td style='text-align:left;'>
-            {!! $conteudo !!}
-        </td>
-    </tr>
-</table>
+@foreach($conteudo as $i)
+<p style="text-align:{{$alinhamento}}; padding-top:{{$msup}}px; margin-bottom:{{$minf}}px; margin-left:{{$mesq}}px; margin-right:{{$mdir}}px;">
+    {!! $i !!}
+</p>
+@endforeach
