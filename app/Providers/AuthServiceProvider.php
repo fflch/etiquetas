@@ -31,6 +31,5 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('is_user', function (User $user){
             return $user->codpes == Auth::user()->codpes;
         });
-        //
     }
 }
