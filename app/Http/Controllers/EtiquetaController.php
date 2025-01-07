@@ -8,8 +8,7 @@ use Proner\PhpPimaco\Tag;
 use Proner\PhpPimaco\Pimaco;
 use App\Models\Etiqueta;
 use App\Http\Requests\EtiquetaRequest;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EtiquetaController extends Controller
 {
@@ -18,7 +17,7 @@ class EtiquetaController extends Controller
     }
 
     public function geraEtiqueta(EtiquetaRequest $request){
-        $this->authorize('is_user');
+        Gate::authorize('is_user');
         $csvData = array_map('str_getcsv', file($request->file('file')->getPathName()));
         if($request->cabecalho){
             array_shift($csvData);

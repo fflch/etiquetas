@@ -5,4 +5,4 @@ use App\Http\Controllers\EtiquetaController;
 
 Route::get('/', [EtiquetaController::class, 'index']);
 Route::post('/gera-pdf', [EtiquetaController::class, 'geraEtiqueta']);
-Route::get('/download', [EtiquetaController::class, 'download'])->name('download');
+Route::get('/download', [EtiquetaController::class, 'download']);
