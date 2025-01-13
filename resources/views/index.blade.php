@@ -71,22 +71,24 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-8">
-                                @can('is_user')
+                                @if(!\Illuminate\Support\Facades\Auth::user())
+                                <a href="/login">Para usar o sistema faça login</a>
+                                @else
                                 <button class="btn btn-success" type="submit">
                                     Enviar
                                 </button>
-                                @endcan
                             </div>
                             <div class="col-4">
-                            <a href="/download" class="btn btn-outline-primary">
-                                Baixar modelo do CSV <i class="fa fa-download"></i>
-                            </a>
+                                <a href="/download" class="btn btn-outline-primary">
+                                    Baixar modelo do CSV <i class="fa fa-download"></i>
+                                </a>
                             </div>
+                            @endif
                         </div>
                     </li>
                 </form>
-                </ul>
-            </div>
+            </ul>
+        </div>
         </div>
     </div>
 </div>

@@ -26,8 +26,6 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
-
         Gate::define('is_user', function (User $user){
             return $user->codpes == Auth::user()->codpes;
         });
