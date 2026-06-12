@@ -1,0 +1,40 @@
+services:
+  etiquetas:
+    build: .
+    image: etiquetas:latest
+    container_name: etiquetas
+    ports:
+      - "8000:80"
+    depends_on:
+      - mariadb
+    networks:
+      - etiquetas-network
+    volumes:
+      - ./:/var/www/html
+    environment:
+      HOME: /tmp
+    user: "${UID:-1000}:${GID:-1000}"
+
+  mariadb:
+    image: mariadb:11
+    container_name: etiquetas_mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: etiquetas
+      MYSQL_USER: etiquetas
+      MYSQL_PASSWORD: etiquetas
+      MYSQL_ROOT_PASSWORD: etiquetas
+    networks:
+      - etiquetas-network
+
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: etiquetas_selenium
+    ports:
+      - "7900:7900" # VNC (pra ver o browser rodando)
+    networks:
+      - etiquetas-network
+    shm_size: 2gb
+
+networks:
+  etiquetas-network:
