@@ -1,5 +1,6 @@
 services:
   etiquetas:
+    build: .
     image: etiquetas:latest
     container_name: etiquetas
     ports:
@@ -23,8 +24,6 @@ services:
       MYSQL_USER: etiquetas
       MYSQL_PASSWORD: etiquetas
       MYSQL_ROOT_PASSWORD: etiquetas
-    volumes:
-      - mariadb_data:/var/lib/mysql
     networks:
       - etiquetas-network
 
@@ -39,6 +38,3 @@ services:
 
 networks:
   etiquetas-network:
-
-volumes:
-  mariadb_data:
